@@ -34,16 +34,7 @@ feature_input_model_adapter <- LKTCustomModel(
     model_seen$response_length <<- length(request$feature_input$response)
     model_seen$feature_count <<- length(request$feature_input$feature_spec)
 
-    lkt_fit_liblinear(
-      design_matrix = request$feature_input$design_matrix,
-      data = request$feature_input$data,
-      usefolds = request$usefolds,
-      bias = request$options$bias,
-      cost = request$options$cost,
-      epsilon = request$options$epsilon,
-      type = request$options$type,
-      verbose = verbose
-    )
+    LibLinearModel()$fit(request, verbose = verbose)
   }
 )
 

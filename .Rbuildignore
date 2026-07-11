@@ -1,5 +1,10 @@
 ^LKT\.Rproj$
 ^\.Rproj\.user$
+^\.agents$
+^\.codex$
+^\.codex-r-lib$
+^\.vscode$
+^\.Rhistory$
 ^doc$
 ^Meta$
 cran-comments.md

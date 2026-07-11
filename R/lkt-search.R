@@ -515,7 +515,8 @@ LASSOLKTModel <- function(data,gridpars,allcomponents,preset=NA,presetint=T,allf
                         specialcomponents=specialcomponents,specialfeatures=specialfeatures,
                         specialpars=specialpars,removefeat=removefeat, removecomp=removecomp)
 
-  m1 = as.matrix(datmat$lassodata[[2]])
+  m1 = methods::getMethod("as.matrix", "matrix.csr")(
+    datmat$lassodata[[2]])
   colnames(m1) = datmat$lassodata[[1]]
 
   train_x <- m1
@@ -545,7 +546,7 @@ LASSOLKTModel <- function(data,gridpars,allcomponents,preset=NA,presetint=T,allf
   n_features=rep(NA,length(fit$lambda))
   for(j in 1:length(fit$lambda)){
     coefs=coef(fit, s = fit$lambda[j])
-    n_features[j] = length(which(!(coefs==0)))
+    n_features[j] = sum(as.numeric(coefs) != 0)
   }
 
   auc_lambda <- apply(preds, 2, function(col) {
@@ -573,8 +574,9 @@ LASSOLKTModel <- function(data,gridpars,allcomponents,preset=NA,presetint=T,allf
 
   #Returning features retained in lasso model with target lambda along with coefficients
   target_coefs = coef(fit, s = fit$lambda[target_idx])
-  kept_features = rownames(target_coefs)[which(!(target_coefs==0))]
-  kept_coefs = target_coefs[which(!(target_coefs==0))]
+  kept_indices = which(as.numeric(target_coefs) != 0)
+  kept_features = rownames(target_coefs)[kept_indices]
+  kept_coefs = as.numeric(target_coefs)[kept_indices]
   model_features = data.frame(kept_features = kept_features,kept_coefs = kept_coefs)
 
   return_list = list(train_x,train_y,test_x,test_y,fit,target_auc,target_rmse,n_features,auc_lambda,rmse_lambda,BIC_lambda,target_idx,preds,target_coefs,model_features)#,fit)

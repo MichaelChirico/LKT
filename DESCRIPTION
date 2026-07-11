@@ -1,6 +1,6 @@
 Package: LKT
 Title: Logistic Knowledge Tracing
-Version: 1.7.0
+Version: 2.0.0
 Authors@R: 
     c(person(given = "Philip I.",
            family = "Pavlik Jr.",
@@ -13,7 +13,7 @@ Authors@R:
            email = "luke.eglington.mail@gmail.com",
            comment = c(ORCID = "0000-0002-8432-9203"))
            )
-Description: Computes Logistic Knowledge Tracing ('LKT') which is a general method for tracking human learning in an educational software system. Please see Pavlik, Eglington, and Harrel-Williams (2021) <https://ieeexplore.ieee.org/document/9616435>. 'LKT' is a method to compute features of student data that are used as predictors of subsequent performance. 'LKT' allows great flexibility in the choice of predictive components and features computed for these predictive components. The system is built on top of 'LiblineaR', which enables extremely fast solutions compared to base glm() in R.
+Description: Computes Logistic Knowledge Tracing ('LKT') which is a general method for tracking human learning in an educational software system. Please see Pavlik, Eglington, and Harrell-Williams (2021) <doi:10.1109/TLT.2021.3128569>. 'LKT' is a method to compute features of student data that are used as predictors of subsequent performance. 'LKT' allows great flexibility in the choice of predictive components and features computed for these predictive components. The system is built on top of 'LiblineaR', which enables extremely fast solutions compared to base glm() in R.
 License: GPL-3
 Encoding: UTF-8
 LazyData: true
@@ -52,5 +52,4 @@ Suggests:
     rmarkdown,
     knitr,
     utils,
-    caret,
     ggplot2

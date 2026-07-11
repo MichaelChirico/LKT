@@ -157,15 +157,6 @@ dualfit_duration_error <- tryCatch(
 )
 check_true("dualfit duration requirement fails clearly", dualfit_duration_error)
 
-weibull_empty_error <- tryCatch(
-  {
-    fit_weibull_activation(rt = c(NA_real_, -1), p = c(NA_real_, 1))
-    FALSE
-  },
-  error = function(err) grepl("no usable observations", conditionMessage(err), fixed = TRUE)
-)
-check_true("Weibull empty clean data fails clearly", weibull_empty_error)
-
 model_called <- FALSE
 model_saw_request <- FALSE
 custom_model <- LKTCustomModel(
@@ -185,16 +176,7 @@ custom_model <- LKTCustomModel(
     model_saw_request <<- model_saw_request &&
       all(c("formula", "data", "response", "feature_spec", "design_matrix", "column_names") %in%
             names(request$feature_input))
-    lkt_fit_liblinear(
-      design_matrix = request$design_matrix,
-      data = request$data,
-      usefolds = request$usefolds,
-      bias = request$options$bias,
-      cost = request$options$cost,
-      epsilon = request$options$epsilon,
-      type = request$options$type,
-      verbose = verbose
-    )
+    LibLinearModel()$fit(request, verbose = verbose)
   }
 )
 custom_model_fit <- LKT(

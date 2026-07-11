@@ -11,7 +11,12 @@ vignette: >
 
 ```{r setup}
 source("lkt-vignette-setup.R")
+knitr::opts_chunk$set(eval = run_expensive_vignette)
 ```
+
+This full-data feature search is intentionally not evaluated during routine
+CRAN checks. Set `LKT_RUN_EXPENSIVE_VIGNETTES=true` to execute it when
+rendering.
 
 # Load data
 

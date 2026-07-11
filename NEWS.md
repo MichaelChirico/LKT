@@ -1,3 +1,12 @@
+# Version 2.0.0
+* Added the generalized online-adaptive model with coefficient and nonlinear
+  parameter adaptation.
+* Added registered native evaluators for supported online-adaptive model shapes.
+* Refactored model construction, feature computation, prediction, and search
+  behind explicit interfaces.
+* Replaced the historical monolithic examples vignette with focused,
+  independently executable vignettes based on bundled package data.
+
 # Version 1.0.0
 * Initial Release
   

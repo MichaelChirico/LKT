@@ -69,10 +69,8 @@ Creates an LKT model adapter that first solves global feature
 weights with the standard static LKT/LibLinear model, then uses those weights
 as the starting beta vector for every subject. Within each subject, the full
 beta vector is updated online after each observed response:
-\code{beta[j, t + 1] = beta[j, t] + alpha * x[j, t] * (y[t] - p[t]) /
-(x[j, t]^2 + denom_epsilon)} for each online-updated coefficient \code{j}.
-With \code{alpha = 0}, this model reproduces the static global-beta
-predictions.
+\code{beta[j, t + 1] = beta[j, t] + alpha * x[j, t] * (y[t] - p[t]) / (x[j, t]^2 + denom_epsilon)} for each online-updated coefficient \code{j}. With
+\code{alpha = 0}, this model reproduces the static global-beta predictions.
 }
 \examples{
 adapter <- OnlineCalibrationModel(maxit = 5)

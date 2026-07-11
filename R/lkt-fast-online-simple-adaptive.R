@@ -390,6 +390,7 @@ lkt_online_simple_adaptive_eval_r <- function(par, input, clip_epsilon,
   )
 }
 
+#' @export
 LKTOnlineSimpleAdaptiveDecayEval <- function(
     par, input, clip_epsilon = 1e-6, denom_epsilon = 1e-6,
     decay_lower = 1e-5, decay_upper = 0.99999, return_details = FALSE,
@@ -723,6 +724,7 @@ LKTOptimizeOnlineSimpleAdaptiveAlpha <- function(
   )
 }
 
+#' @export
 LKTOptimizeOnlineSimpleAdaptiveDecayAlpha <- function(
     input,
     start = c(alpha_recency = 0.03, alpha_logsuc = 0.05,
@@ -1707,8 +1709,27 @@ lkt_online_adaptive_is_specialized_decay <- function(beta_terms,
 #'
 #' @param alpha_recency_start Starting value for the recency learning rate.
 #' @param alpha_logsuc_start Starting value for the logsuc learning rate.
+#' @param alpha_decay_start Legacy starting value for the recency decay
+#'   learning rate.
+#' @param online_mode Online optimizer mode. `"alpha_only"` uses the
+#'   generalized adaptive alpha layer. `"six_parameter"` and `"decay_alpha"`
+#'   retain the named historical model behaviors.
+#' @param beta_alpha_terms Coefficient names whose beta values are updated
+#'   online.
+#' @param nonlinear_alpha_terms Nonlinear parameter keys formatted as
+#'   `feature|component|slot`.
+#' @param alpha_start Optional numeric starting vector for selected beta and
+#'   nonlinear learning rates.
+#' @param alpha_lower Scalar or vector lower bounds for learning-rate
+#'   optimization.
+#' @param alpha_upper Scalar or vector upper bounds for learning-rate
+#'   optimization.
+#' @param nonlinear_lower Lower clamp for online nonlinear parameter states.
+#' @param nonlinear_upper Upper clamp for online nonlinear parameter states.
 #' @param maxit Maximum optimizer iterations.
 #' @param factr Optimizer `factr` control value.
+#' @param optim_trace Optimizer trace level passed to `stats::optim()`.
+#' @param optim_report Optimizer reporting interval passed to `stats::optim()`.
 #' @param require_native Logical; stop if the compiled native evaluator is not
 #'   loaded.
 #' @param use_gradient Logical; pass the propagated gradient to the optimizer.
@@ -1768,6 +1789,7 @@ OnlineAdaptiveModel <- function(alpha_recency_start = 0.03,
   )
 }
 
+#' @rdname OnlineAdaptiveModel
 #' @export
 FastOnlineSimpleAdaptiveModel <- OnlineAdaptiveModel
 

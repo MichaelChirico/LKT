@@ -21,6 +21,7 @@
 #' @importFrom pROC auc roc
 #' @importFrom stats aggregate as.formula ave binomial coef cor deviance glm lm logLik median nobs optim plogis predict qlogis quantile sd setNames terms
 #' @importFrom utils browseURL head modifyList packageVersion
+#' @useDynLib LKT, .registration = TRUE
 "_PACKAGE"
 
 utils::globalVariables(".SD")
